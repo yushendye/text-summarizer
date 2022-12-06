@@ -74,6 +74,9 @@ def generate_summary(file_name = None, input_text = None, top_n = 5):
     if file_name is None and input_text is not None:
         sentences = read_input_from_text(input_text)
 
+    if  len(sentences) <= top_n:
+        top_n = len(sentences)
+        
     sentences_similarity_matrix = build_similarity_index(sentences, stop_words)
 
     sentence_similarity_graph = nx.from_numpy_array(sentences_similarity_matrix)
